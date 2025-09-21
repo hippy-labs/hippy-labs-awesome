@@ -1,0 +1,21 @@
+{
+  "name": "@hippy-labs/awesome",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "A demo utility library for build & publish course",
+  "main": "dist/awesome-utils.cjs.js",
+  "module": "dist/awesome-utils.esm.js",
+  "browser": "dist/awesome-utils.umd.js",
+  "exports": {
+    "import": "./dist/awesome-utils.esm.js",
+    "require": "./dist/awesome-utils.cjs.js"
+  },
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "devDependencies": {
+    "rollup": "^4.0.0",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "typescript": "^5.0.0"
+  }
+}
