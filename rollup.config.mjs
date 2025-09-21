@@ -1,4 +1,5 @@
 import typescript from 'rollup-plugin-typescript2'
+import dts from 'rollup-plugin-dts'
 
 function banner(format) {
     return `console.log("hippy-labs-awesome: format = ${format}")`
@@ -7,25 +8,33 @@ function banner(format) {
 export default [
     // ESM
     {
-        input: 'src/index.ts',
+        input: {
+            index: 'src/index.ts',
+            math: 'src/math/index.ts',
+            string: 'src/string/index.ts',
+        },
         output: {
-            file: 'dist/hippy-labs-awesome.esm.js',
+            dir: 'dist/esm',
             format: 'esm',
             banner: banner('ESM'),
             sourcemap: true,
         },
-        plugins: [typescript()]
+        plugins: [typescript({tsconfigOverride: {compilerOptions: {declaration: false}}})]
     },
     // CJS
     {
-        input: 'src/index.ts',
+        input: {
+            index: 'src/index.ts',
+            math: 'src/math/index.ts',
+            string: 'src/string/index.ts',
+        },
         output: {
-            file: 'dist/hippy-labs-awesome.cjs.js',
+            dir: 'dist/cjs',
             format: 'cjs',
             banner: banner('CJS'),
             sourcemap: true,
         },
-        plugins: [typescript()]
+        plugins: [typescript({tsconfigOverride: {compilerOptions: {declaration: false}}})]
     },
     // UMD
     {
@@ -34,10 +43,9 @@ export default [
             file: 'dist/hippy-labs-awesome.umd.js',
             format: 'umd',
             name: 'HippyLabsAwesomeUMD',
-            // banner: banner('UMD'),
             sourcemap: true,
         },
-        plugins: [typescript()]
+        plugins: [typescript({tsconfigOverride: {compilerOptions: {declaration: false}}})]
     },
     // IIFE
     {
@@ -49,6 +57,15 @@ export default [
             banner: banner('IIFE'),
             sourcemap: true,
         },
-        plugins: [typescript()]
-    }
+        plugins: [typescript({tsconfigOverride: {compilerOptions: {declaration: false}}})]
+    },
+    // DTS（单独一份）（只一份 index.d.ts）
+    {
+        input: 'src/index.ts',
+        output: {
+            dir: 'dist/types',
+            format: 'es',
+        },
+        plugins: [dts()],
+    },
 ]
