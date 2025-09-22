@@ -11,48 +11,30 @@ function banner(format) {
 export default [
     // ESM
     {
-        input: {
-            index: 'src/index.ts',
-            math: 'src/math/index.ts',
-            string: 'src/string/index.ts',
-        },
+        input: 'src/index.ts',
         output: {
             dir: 'dist/esm',
             format: 'esm',
             // banner: banner('ESM'),
             sourcemap: false,
-            entryFileNames: '[name].js',
-            chunkFileNames: 'chunks/[name]-[hash].js',
-            manualChunks: {
-                vendor: ['lodash-es'], // 提取 lodash-es 到单独的 vendor chunk
-            },
         },
         plugins: [
             nodeResolve(),
             typescript({tsconfigOverride: {compilerOptions: {declaration: false}}}),
             // 本地服务
-            serve({open: true, contentBase: '.', port: 3000}),
-            livereload({watch: 'dist'}),
+            // serve({open: true, contentBase: '.', port: 3000}),
+            // livereload({watch: 'dist'}),
             //http://localhost:3000/example/test-dynamic-import.html
         ],
     },
     // CJS
     {
-        input: {
-            index: 'src/index.ts',
-            math: 'src/math/index.ts',
-            string: 'src/string/index.ts',
-        },
+        input: 'src/index.ts',
         output: {
             dir: 'dist/cjs',
             format: 'cjs',
             // banner: banner('CJS'),
             sourcemap: false,
-            entryFileNames: '[name].js',
-            chunkFileNames: 'chunks/[name]-[hash].js',
-            manualChunks: {
-                vendor: ['lodash-es'], // 提取 lodash-es 到单独的 vendor chunk
-            },
         },
         plugins: [
             nodeResolve(),
