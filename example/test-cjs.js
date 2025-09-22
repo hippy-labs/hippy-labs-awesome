@@ -2,7 +2,7 @@
  * package.json 去掉配置
  * "type": "module",
  */
-const {add, sub, capitalize, formatMessage} = require('../dist/cjs/index.js')
+const {add, sub, capitalize, formatMessage} = require('../dist/cjs/hippy-labs-awesome.cjs.js')
 
 // const { add, sub } = require('../dist/cjs/math.js')
 // const { capitalize, formatMessage } = require('../dist/cjs/string.js')

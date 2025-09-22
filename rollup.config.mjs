@@ -1,4 +1,5 @@
 import typescript from 'rollup-plugin-typescript2'
+import {nodeResolve} from '@rollup/plugin-node-resolve'
 import dts from 'rollup-plugin-dts'
 
 function banner(format) {
@@ -8,56 +9,61 @@ function banner(format) {
 export default [
     // ESM
     {
-        input: {
-            index: 'src/index.ts',
-            math: 'src/math/index.ts',
-            string: 'src/string/index.ts',
-        },
+        input: 'src/index.ts',
         output: {
-            dir: 'dist/esm',
+            file: 'dist/esm/hippy-labs-awesome.esm.js',
             format: 'esm',
             banner: banner('ESM'),
-            sourcemap: true,
+            sourcemap: false,
         },
-        plugins: [typescript({tsconfigOverride: {compilerOptions: {declaration: false}}})]
+        plugins: [
+            nodeResolve(),
+            typescript({tsconfigOverride: {compilerOptions: {declaration: false}}})
+        ],
     },
     // CJS
     {
-        input: {
-            index: 'src/index.ts',
-            math: 'src/math/index.ts',
-            string: 'src/string/index.ts',
-        },
+        input: 'src/index.ts',
         output: {
-            dir: 'dist/cjs',
+            file: 'dist/cjs/hippy-labs-awesome.cjs.js',
             format: 'cjs',
             banner: banner('CJS'),
-            sourcemap: true,
+            sourcemap: false,
         },
-        plugins: [typescript({tsconfigOverride: {compilerOptions: {declaration: false}}})]
+        plugins: [
+            nodeResolve(),
+            typescript({tsconfigOverride: {compilerOptions: {declaration: false}}})
+        ],
     },
     // UMD
     {
         input: 'src/index.ts',
         output: {
-            file: 'dist/hippy-labs-awesome.umd.js',
+            file: 'dist/umd/hippy-labs-awesome.umd.js',
             format: 'umd',
             name: 'HippyLabsAwesomeUMD',
-            sourcemap: true,
+            // banner: banner('UMD'),
+            sourcemap: false,
         },
-        plugins: [typescript({tsconfigOverride: {compilerOptions: {declaration: false}}})]
+        plugins: [
+            nodeResolve(),
+            typescript({tsconfigOverride: {compilerOptions: {declaration: false}}})
+        ],
     },
     // IIFE
     {
         input: 'src/index.ts',
         output: {
-            file: 'dist/hippy-labs-awesome.iife.js',
+            file: 'dist/iife/hippy-labs-awesome.iife.js',
             format: 'iife',
             name: 'HippyLabsAwesomeIIFE',
             banner: banner('IIFE'),
-            sourcemap: true,
+            sourcemap: false,
         },
-        plugins: [typescript({tsconfigOverride: {compilerOptions: {declaration: false}}})]
+        plugins: [
+            nodeResolve(),
+            typescript({tsconfigOverride: {compilerOptions: {declaration: false}}})
+        ],
     },
     // DTS（单独一份）（只一份 index.d.ts）
     {

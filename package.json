@@ -33,6 +33,10 @@
     "typescript": "^5.0.0",
     "@rollup/plugin-node-resolve": "^15.0.0",
     "@rollup/plugin-commonjs": "^25.0.0",
-    "rollup-plugin-dts": "^6.0.0"
+    "rollup-plugin-dts": "^6.0.0",
+    "@types/lodash-es": "^4.17.12"
+  },
+  "dependencies": {
+    "lodash-es": "^4.17.21"
   }
 }
