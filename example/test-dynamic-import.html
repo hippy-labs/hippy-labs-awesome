@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>动态导入测试 Demo</title>
+</head>
+<body>
+<h3>动态导入测试 Demo</h3>
+<p>
+    打开 <b>DevTools → Network</b> 面板，<br>
+    先刷新页面，会发现只加载了 <code>index.js</code>，<br>
+    点击下面按钮时，才会去请求 <code>math-XXXX.js</code> 和依赖。<br>
+    这就是动态导入的“运行时加载”效果。
+</p>
+
+<button id="loadBtn">点击加载 Math 模块</button>
+
+<script type="module">
+    import {loadMath} from '../dist/esm/index.js'
+
+    document.getElementById('loadBtn').addEventListener('click', () => {
+        console.log('开始动态导入 math 模块...')
+        loadMath().then(math => {
+            console.log('math 模块已加载:', math.add(2, 3))
+        })
+    })
+</script>
+</body>
+</html>
