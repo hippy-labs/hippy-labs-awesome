@@ -2,7 +2,7 @@
  * package.json 添加配置
  * "type": "module",
  */
-import {add, sub, capitalize, formatMessage} from '../dist/esm/hippy-labs-awesome.esm.js'
+import {add, sub, capitalize, formatMessage} from '../dist/esm/index.js'
 
 //
 // import { add, sub } from '../dist/esm/math.js'

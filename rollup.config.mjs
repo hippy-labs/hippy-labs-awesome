@@ -11,10 +11,15 @@ export default [
     {
         input: 'src/index.ts',
         output: {
-            file: 'dist/esm/hippy-labs-awesome.esm.js',
+            dir: 'dist/esm',
             format: 'esm',
             banner: banner('ESM'),
             sourcemap: false,
+            entryFileNames: '[name].js',
+            chunkFileNames: 'chunks/[name]-[hash].js',
+            manualChunks: {
+                vendor: ['lodash-es'], // 提取 lodash-es 到单独的 vendor chunk
+            },
         },
         plugins: [
             nodeResolve(),
@@ -25,10 +30,15 @@ export default [
     {
         input: 'src/index.ts',
         output: {
-            file: 'dist/cjs/hippy-labs-awesome.cjs.js',
+            dir: 'dist/cjs',
             format: 'cjs',
             banner: banner('CJS'),
             sourcemap: false,
+            entryFileNames: '[name].js',
+            chunkFileNames: 'chunks/[name]-[hash].js',
+            manualChunks: {
+                vendor: ['lodash-es'], // 提取 lodash-es 到单独的 vendor chunk
+            },
         },
         plugins: [
             nodeResolve(),
@@ -39,7 +49,7 @@ export default [
     {
         input: 'src/index.ts',
         output: {
-            file: 'dist/umd/hippy-labs-awesome.umd.js',
+            file: 'dist/umd/index.js',
             format: 'umd',
             name: 'HippyLabsAwesomeUMD',
             // banner: banner('UMD'),
@@ -54,7 +64,7 @@ export default [
     {
         input: 'src/index.ts',
         output: {
-            file: 'dist/iife/hippy-labs-awesome.iife.js',
+            file: 'dist/iife/index.js',
             format: 'iife',
             name: 'HippyLabsAwesomeIIFE',
             banner: banner('IIFE'),
