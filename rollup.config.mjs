@@ -9,7 +9,11 @@ function banner(format) {
 export default [
     // ESM
     {
-        input: 'src/index.ts',
+        input: {
+            index: 'src/index.ts',
+            math: 'src/math/index.ts',
+            string: 'src/string/index.ts',
+        },
         output: {
             dir: 'dist/esm',
             format: 'esm',
@@ -28,7 +32,11 @@ export default [
     },
     // CJS
     {
-        input: 'src/index.ts',
+        input: {
+            index: 'src/index.ts',
+            math: 'src/math/index.ts',
+            string: 'src/string/index.ts',
+        },
         output: {
             dir: 'dist/cjs',
             format: 'cjs',
