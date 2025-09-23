@@ -3,6 +3,8 @@ import {nodeResolve} from '@rollup/plugin-node-resolve'
 import dts from 'rollup-plugin-dts'
 import serve from 'rollup-plugin-serve'
 import livereload from 'rollup-plugin-livereload'
+import hippyLabsPlugin from "./plugins/hippy-labs-plugin.js";
+import bannerPlugin from "./plugins/banner-plugin.js";
 
 function banner(format) {
     return `console.log("hippy-labs-awesome: format = ${format}")`
@@ -26,6 +28,9 @@ export default [
             // serve({open: true, contentBase: '.', port: 3000}),
             // livereload({watch: 'dist'}),
             //http://localhost:3000/example/test-dynamic-import.html
+            //
+            bannerPlugin(),
+            // hippyLabsPlugin({debug: true})
         ],
     },
     // CJS
