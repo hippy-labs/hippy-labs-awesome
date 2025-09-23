@@ -5,6 +5,8 @@ import serve from 'rollup-plugin-serve'
 import livereload from 'rollup-plugin-livereload'
 import hippyLabsPlugin from "./plugins/hippy-labs-plugin.js";
 import bannerPlugin from "./plugins/banner-plugin.js";
+import terser from '@rollup/plugin-terser'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 function banner(format) {
     return `console.log("hippy-labs-awesome: format = ${format}")`
@@ -30,6 +32,12 @@ export default [
             //http://localhost:3000/example/test-dynamic-import.html
             //
             bannerPlugin(),
+            terser(),
+            visualizer({
+                open: true,
+                gzipSize: true,
+                brotliSize: true
+            })
             // hippyLabsPlugin({debug: true})
         ],
     },
