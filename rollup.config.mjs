@@ -13,11 +13,12 @@ export default [
     {
         input: 'src/index.ts',
         output: {
-            dir: 'dist/esm',
+            file: 'dist/esm/index.js',
             format: 'esm',
             // banner: banner('ESM'),
             sourcemap: false,
         },
+        external: ['lodash-es'],
         plugins: [
             nodeResolve(),
             typescript({tsconfigOverride: {compilerOptions: {declaration: false}}}),
@@ -31,46 +32,49 @@ export default [
     {
         input: 'src/index.ts',
         output: {
-            dir: 'dist/cjs',
+            file: 'dist/cjs/index.js',
             format: 'cjs',
             // banner: banner('CJS'),
             sourcemap: false,
         },
+        external: ['lodash-es'],
         plugins: [
             nodeResolve(),
             typescript({tsconfigOverride: {compilerOptions: {declaration: false}}})
         ],
     },
-    // // UMD
-    // {
-    //     input: 'src/index.ts',
-    //     output: {
-    //         file: 'dist/umd/index.js',
-    //         format: 'umd',
-    //         name: 'HippyLabsAwesomeUMD',
-    //         // banner: banner('UMD'),
-    //         sourcemap: false,
-    //     },
-    //     plugins: [
-    //         nodeResolve(),
-    //         typescript({tsconfigOverride: {compilerOptions: {declaration: false}}})
-    //     ],
-    // },
-    // // IIFE
-    // {
-    //     input: 'src/index.ts',
-    //     output: {
-    //         file: 'dist/iife/index.js',
-    //         format: 'iife',
-    //         name: 'HippyLabsAwesomeIIFE',
-    //         banner: banner('IIFE'),
-    //         sourcemap: false,
-    //     },
-    //     plugins: [
-    //         nodeResolve(),
-    //         typescript({tsconfigOverride: {compilerOptions: {declaration: false}}})
-    //     ],
-    // },
+    // UMD
+    {
+        input: 'src/index.ts',
+        output: {
+            file: 'dist/umd/index.js',
+            format: 'umd',
+            name: 'HippyLabsAwesomeUMD',
+            // banner: banner('UMD'),
+            sourcemap: false,
+        },
+        external: ['lodash-es'],
+        plugins: [
+            nodeResolve(),
+            typescript({tsconfigOverride: {compilerOptions: {declaration: false}}})
+        ],
+    },
+    // IIFE
+    {
+        input: 'src/index.ts',
+        output: {
+            file: 'dist/iife/index.js',
+            format: 'iife',
+            name: 'HippyLabsAwesomeIIFE',
+            banner: banner('IIFE'),
+            sourcemap: false,
+        },
+        external: ['lodash-es'],
+        plugins: [
+            nodeResolve(),
+            typescript({tsconfigOverride: {compilerOptions: {declaration: false}}})
+        ],
+    },
     // DTS（单独一份）（只一份 index.d.ts）
     {
         input: 'src/index.ts',

@@ -28,6 +28,9 @@
     "dev": "rollup -c -w",
     "build": "rollup -c"
   },
+  "peerDependencies": {
+    "lodash": "^4.17.21"
+  },
   "devDependencies": {
     "rollup": "^4.0.0",
     "rollup-plugin-typescript2": "^0.36.0",
